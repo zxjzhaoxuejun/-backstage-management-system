@@ -6,6 +6,12 @@ import router from './router'
 import Cookies from 'js-cookie'
 import 'element-ui/lib/theme-chalk/index.css'
 import VueSocialSharing from 'vue-social-sharing'
+import VueMeta from 'vue-meta'
+
+Vue.use(VueMeta, {
+  // optional pluginOptions
+  refreshOnceOnNavigation: true
+})
 
 Vue.use(VueSocialSharing)
 

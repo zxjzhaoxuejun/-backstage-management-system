@@ -27,6 +27,16 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/list',
+    component: () => import('@/views/list'),
+    hidden: true
+  },
+  {
+    path: '/detail',
+    component: () => import('@/views/list/detail'),
+    hidden: true
+  },
+  {
     path: '/404',
     component: () => import('@/views/error-page/404'),
     hidden: true
