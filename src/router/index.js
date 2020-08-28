@@ -22,6 +22,11 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/share',
+    component: () => import('@/views/share'),
+    hidden: true
+  },
+  {
     path: '/404',
     component: () => import('@/views/error-page/404'),
     hidden: true

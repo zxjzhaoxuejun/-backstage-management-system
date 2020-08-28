@@ -5,6 +5,9 @@ import i18n from './lang'
 import router from './router'
 import Cookies from 'js-cookie'
 import 'element-ui/lib/theme-chalk/index.css'
+import VueSocialSharing from 'vue-social-sharing'
+
+Vue.use(VueSocialSharing)
 
 Vue.config.productionTip = false
 
