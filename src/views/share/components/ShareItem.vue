@@ -196,7 +196,6 @@ export default {
           clearInterval(this.popup.interval)
 
           this.popup.window = null
-
           this.emit('close')
         }
       }, 500)

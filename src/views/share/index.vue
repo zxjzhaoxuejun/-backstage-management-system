@@ -18,6 +18,7 @@
       title="Say hi to Vite! A brand new, extremely fast development setup for Vue."
       hashtags="vuejs,vite"
       twitter-user="74747838"
+      @close="share_network_close"
     >
       <i class="fa fa-twitter-square" />
     </ShareItem>
@@ -36,6 +37,8 @@
       url="https://news.vuejs.org/issues/180"
       title="Say hi to Vite! A brand new, extremely fast development setup for Vue."
       description="This week, I’d like to introduce you to 'Vite', which means 'Fast'. It’s a brand new development setup created by Evan You."
+      @open="share_network_open"
+      @close="share_network_close"
     >
       <i class="fa fa-envelope-square" />
     </ShareItem>
@@ -49,6 +52,14 @@ export default {
   data() {
     return {
 
+    }
+  },
+  methods: {
+    share_network_open(val) {
+      console.log('打开' + val)
+    },
+    share_network_close(val) {
+      console.log('关闭' + val)
     }
   }
 }
