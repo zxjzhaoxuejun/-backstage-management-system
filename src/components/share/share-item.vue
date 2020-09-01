@@ -3,7 +3,7 @@
 import ShareLinks from './share-links'
 const $window = typeof window !== 'undefined' ? window : null
 export default {
-  name: 'ShareItem',
+  name: 'SharePlugins',
 
   props: {
     /**
@@ -93,20 +93,19 @@ export default {
   },
   computed: {
     /**
-     * Formatted shareMethod name.
+     * 获取分享平台名称
      */
     key() {
       return this.shareMethod.toLowerCase()
     },
     /**
-     * Create the url for sharing.
+     * 创建分享链接
      */
     shareLink() {
       let link = this.rawLink
 
       /**
-       * Twitter sharing shouldn't include empty parameter
-       * Source: https://github.com/nicolasbeauvais/vue-social-sharing/issues/143
+       * Twitter分享不应该包含空参数
        */
       if (this.key === 'twitter') {
         if (!this.hashtags.length) link = link.replace('&hashtags=@h', '')
@@ -123,14 +122,13 @@ export default {
         .replace(/@m/g, encodeURIComponent(this.media))
     },
     /**
-     * Network sharing raw sharing link.
+     * 网络共享原始共享链接
      */
     rawLink() {
       const ua = navigator.userAgent.toLowerCase()
 
       /**
-       * On IOS, SMS sharing link need a special formatting
-       * Source: https://weblog.west-wind.com/posts/2013/Oct/09/Prefilling-an-SMS-on-Mobile-Devices-with-the-sms-Uri-Scheme#Body-only
+       *在IOS上，短信共享链接需要特殊格式
        */
       if (this.key === 'sms' && (ua.indexOf('iphone') > -1 || ua.indexOf('ipad') > -1)) {
         return ShareLinks[this.key].replace(':?', ':&')
@@ -139,7 +137,7 @@ export default {
       return ShareLinks[this.key]
     },
     /**
-     * Encoded hashtags for the current social network.
+     * 当前社交网络的编码标签
      */
     encodedHashtags() {
       if (this.key === 'facebook' && this.hashtags.length) {
@@ -151,8 +149,7 @@ export default {
   },
   methods: {
     /**
-     * Center the popup on multi-screens
-     * http://stackoverflow.com/questions/4068373/center-a-popup-window-on-screen/32261263
+     * 多屏幕上的弹出窗口的中心
      */
     resizePopup() {
       const width = $window.innerWidth || (document.documentElement.clientWidth || $window.screenX)
@@ -163,12 +160,12 @@ export default {
       this.popup.top = (height - this.popup.height) / 2 / systemZoom + ($window.screenTop !== undefined ? $window.screenTop : $window.screenY)
     },
     /**
-     * Shares URL in specified network.
+     * 在指定网络中共享URL。
      */
     share() {
       this.resizePopup()
 
-      // If a popup window already exist, we close it and trigger a change event.
+      // 如果弹出窗口已经存在，则关闭它并触发一个更改事件
       if (this.popup.window && this.popup.interval) {
         clearInterval(this.popup.interval)
 
@@ -190,7 +187,7 @@ export default {
       )
 
       this.popup.window.focus()
-      // Create an interval to detect popup closing event
+      // 创建一个间隔来检测弹出关闭事件
       this.popup.interval = setInterval(() => {
         if (!this.popup.window || this.popup.window.closed) {
           clearInterval(this.popup.interval)
@@ -203,7 +200,7 @@ export default {
     },
 
     /**
-     * Touches shareMethod and emits click event.
+     * 触摸shareMethod并发出单击事件。
      */
     touch() {
       window.open(this.shareLink, '_blank')

@@ -3,9 +3,9 @@
     <ShareItem
       share-method="twitter"
       url="http://test.xyy51.cn/detail?id=128"
-      title="科技进步是时代发展的一种象征，互联网时代的今天，建站公司的兴起是必然的发展"
-      hashtags="vuejs,vite"
-      twitter-user="74747838"
+      title="64"
+      hashtags="232起323展"
+      twitter-user="3422起是必然的发展"
       @close="share_network_close"
     >
       <i class="fa fa-twitter-square" />
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import ShareItem from '../../components/share/ShareItem'
+import ShareItem from '../../components/share/share-item'
 import { getInfo } from '@/api/list'
 
 export default {
@@ -36,7 +36,12 @@ export default {
       meta: [
         { vmid: 'description', name: 'twitter:description', content: this.description },
         { vmid: 'title', name: 'twitter:title', content: this.title },
-        { vmid: 'image', name: 'twitter:image', content: this.img }
+        { vmid: 'image', name: 'twitter:image', content: this.img },
+        { vmid: '1', property: 'og:type', content: 'web' },
+        { vmid: '2', property: 'og:image', content: this.img },
+        { vmid: '3', property: 'og:title', content: this.title },
+        { vmid: '4', property: 'og:description', content: this.description },
+        { vmid: '5', property: 'og:url', content: 'http://test.xyy51.cn/detail?id=128' }
       ]
     }
   },
@@ -55,6 +60,9 @@ export default {
         this.title = res.data.art_title
         this.img = res.data.art_thumb
       })
+    },
+    share_network_close() {
+
     }
   }
 }
